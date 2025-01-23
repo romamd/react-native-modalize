@@ -136,6 +136,7 @@ const ModalizeBase = (
     onOverlayPress,
     onLayout,
     gestureEventListener,
+    childrenGestureEventListener,
   }: IProps,
   ref: React.Ref<React.ReactNode>,
 ): JSX.Element | null => {
@@ -449,6 +450,7 @@ const ModalizeBase = (
     { nativeEvent }: PanGestureHandlerStateChangeEvent,
     type?: 'component' | 'children',
   ): void => {
+    if (childrenGestureEventListener) childrenGestureEventListener(nativeEvent);
     const { timing } = closeAnimationConfig;
     const { velocityY, translationY } = nativeEvent;
     const negativeReverseScroll =
