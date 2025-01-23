@@ -135,6 +135,7 @@ const ModalizeBase = (
     onPositionChange,
     onOverlayPress,
     onLayout,
+    gestureEventListener,
   }: IProps,
   ref: React.Ref<React.ReactNode>,
 ): JSX.Element | null => {
@@ -629,7 +630,8 @@ const ModalizeBase = (
 
   const handleGestureEvent = Animated.event([{ nativeEvent: { translationY: dragY } }], {
     useNativeDriver: USE_NATIVE_DRIVER,
-    listener: ({ nativeEvent: { translationY } }: PanGestureHandlerStateChangeEvent) => {
+    listener: ({ nativeEvent }: PanGestureHandlerStateChangeEvent) => {
+      const { translationY } = nativeEvent;
       if (panGestureAnimatedValue) {
         const offset = alwaysOpen ?? snapPoint ?? 0;
         const diff = Math.abs(translationY / (endHeight - offset));
@@ -646,6 +648,7 @@ const ModalizeBase = (
 
         panGestureAnimatedValue.setValue(value);
       }
+      if (gestureEventListener) gestureEventListener(nativeEvent);
     },
   });
 

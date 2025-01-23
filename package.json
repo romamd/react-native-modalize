@@ -1,5 +1,5 @@
 {
-  "name": "react-native-modalize",
+  "name": "@romamd555/react-native-modalize",
   "version": "2.1.1",
   "description": "A highly customizable modal/bottom sheet that loves scrolling content.",
   "main": "lib/index.js",

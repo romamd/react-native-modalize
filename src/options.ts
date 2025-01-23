@@ -313,6 +313,8 @@ export interface IProps<ListItem = any> {
    * Callback used when you press the overlay.
    */
   onLayout?(nativeEvent: { layout: LayoutRectangle }): void;
+
+  gestureEventListener?(nativeEvent: any): void;
 }
 
 export interface IHandles {
