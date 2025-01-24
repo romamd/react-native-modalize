@@ -233,7 +233,6 @@ const ModalizeBase = (
     );
 
     let toValue = 0;
-    let toPanValue = 0;
     let newPosition: TPosition;
 
     if (dest === 'top') {
@@ -242,16 +241,6 @@ const ModalizeBase = (
       toValue = (modalHeightValue || 0) - alwaysOpenValue;
     } else if (snapPoint) {
       toValue = (modalHeightValue || 0) - snapPoint;
-    }
-
-    if (panGestureAnimatedValue && (alwaysOpenValue || snapPoint)) {
-      toPanValue = 0;
-    } else if (
-      panGestureAnimatedValue &&
-      !alwaysOpenValue &&
-      (dest === 'top' || dest === 'default')
-    ) {
-      toPanValue = 1;
     }
 
     setIsVisible(true);
