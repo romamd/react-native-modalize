@@ -50,7 +50,7 @@ const AnimatedKeyboardAvoidingView = Animated.createAnimatedComponent(KeyboardAv
  * Since we use this to trigger the swipe down gesture animation, we allow a small threshold to
  * not dismiss Modalize when we are using the ScrollView and we don't want to dismiss.
  */
-const SCROLL_THRESHOLD = -4;
+// const SCROLL_THRESHOLD = -4;
 const USE_NATIVE_DRIVER = true;
 const PAN_DURATION = 150;
 
@@ -421,10 +421,11 @@ const ModalizeBase = (
   ): void => {
     const { timing } = closeAnimationConfig;
     const { velocityY, translationY } = nativeEvent;
-    const negativeReverseScroll =
+    /*const negativeReverseScroll =
       modalPosition === 'top' &&
       beginScrollYValue >= (snapPoint ? 0 : SCROLL_THRESHOLD) &&
-      translationY < 0;
+      translationY < 0;*/
+    const negativeReverseScroll = false;
     const thresholdProps = translationY > threshold && beginScrollYValue === 0;
     const closeThreshold = velocity
       ? (beginScrollYValue <= 20 && velocityY >= velocity) || thresholdProps
