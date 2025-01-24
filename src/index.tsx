@@ -271,15 +271,6 @@ const ModalizeBase = (
         useNativeDriver: USE_NATIVE_DRIVER,
       }),
 
-      panGestureAnimatedValue
-        ? Animated.timing(panGestureAnimatedValue, {
-            toValue: toPanValue,
-            duration: PAN_DURATION,
-            easing: Easing.ease,
-            useNativeDriver,
-          })
-        : Animated.delay(0),
-
       spring
         ? Animated.spring(translateY, {
             ...getSpringConfig(spring),
@@ -324,15 +315,6 @@ const ModalizeBase = (
         easing: Easing.ease,
         useNativeDriver: USE_NATIVE_DRIVER,
       }),
-
-      panGestureAnimatedValue
-        ? Animated.timing(panGestureAnimatedValue, {
-            toValue: 0,
-            duration: PAN_DURATION,
-            easing: Easing.ease,
-            useNativeDriver,
-          })
-        : Animated.delay(0),
 
       spring
         ? Animated.spring(translateY, {
