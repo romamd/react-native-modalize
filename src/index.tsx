@@ -140,7 +140,7 @@ const ModalizeBase = (
 ): JSX.Element | null => {
   const { height: screenHeight } = useDimensions();
   const isHandleOutside = handlePosition === 'outside';
-  const handleHeight = withHandle ? 20 : isHandleOutside ? 35 : 20;
+  const handleHeight = withHandle ? 20 : isHandleOutside ? 35 : 0;
   const fullHeight = screenHeight - modalTopOffset;
   const computedHeight = fullHeight - handleHeight - (isIphoneX ? 34 : 0);
   const endHeight = modalHeight || computedHeight;
