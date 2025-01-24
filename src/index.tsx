@@ -113,6 +113,7 @@ const ModalizeBase = (
     velocity = 2800,
     panGestureAnimatedValue,
     useNativeDriver = true,
+    panGestureEventNativeDriver,
 
     // Elements visibilities
     withReactModal = false,
@@ -627,7 +628,7 @@ const ModalizeBase = (
   };
 
   const handleGestureEvent = Animated.event([{ nativeEvent: { translationY: dragY } }], {
-    useNativeDriver: USE_NATIVE_DRIVER,
+    useNativeDriver: typeof panGestureEventNativeDriver === 'boolean' ? false : USE_NATIVE_DRIVER,
     listener: ({ nativeEvent }: PanGestureHandlerStateChangeEvent) => {
       const { translationY } = nativeEvent;
       if (panGestureAnimatedValue) {

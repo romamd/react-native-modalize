@@ -233,6 +233,11 @@ export interface IProps<ListItem = any> {
   useNativeDriver?: boolean;
 
   /**
+   * Define if the handleGestureEvent uses the native thread to execute the animations.
+   */
+  panGestureEventNativeDriver?: boolean;
+
+  /**
    * Define if Modalize has to be wrap with the Modal component from react-native.
    * @default false
    */
