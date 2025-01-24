@@ -39,7 +39,7 @@ import { IProps, TOpen, TClose, TStyle, IHandles, TPosition } from './options';
 import { useDimensions } from './utils/use-dimensions';
 import { getSpringConfig } from './utils/get-spring-config';
 import { isIphoneX, isIos, isAndroid } from './utils/devices';
-import { isBelowRN65, isRNGH2 } from './utils/libraries';
+import { isBelowRN65 } from './utils/libraries';
 import { invariant } from './utils/invariant';
 import { composeRefs } from './utils/compose-refs';
 import s from './styles';
@@ -52,7 +52,6 @@ const AnimatedKeyboardAvoidingView = Animated.createAnimatedComponent(KeyboardAv
  */
 const SCROLL_THRESHOLD = -4;
 const USE_NATIVE_DRIVER = true;
-const ACTIVATED = 20;
 const PAN_DURATION = 150;
 
 const ModalizeBase = (
@@ -135,8 +134,6 @@ const ModalizeBase = (
     onPositionChange,
     onOverlayPress,
     onLayout,
-    gestureEventListener,
-    childrenGestureEventListener,
   }: IProps,
   ref: React.Ref<React.ReactNode>,
 ): JSX.Element | null => {
@@ -450,7 +447,6 @@ const ModalizeBase = (
     { nativeEvent }: PanGestureHandlerStateChangeEvent,
     type?: 'component' | 'children',
   ): void => {
-    if (childrenGestureEventListener) childrenGestureEventListener(nativeEvent);
     const { timing } = closeAnimationConfig;
     const { velocityY, translationY } = nativeEvent;
     const negativeReverseScroll =
@@ -650,7 +646,6 @@ const ModalizeBase = (
 
         panGestureAnimatedValue.setValue(value);
       }
-      if (gestureEventListener) gestureEventListener(nativeEvent);
     },
   });
 
@@ -781,7 +776,6 @@ const ModalizeBase = (
 
   const renderChildren = (): JSX.Element => {
     const style = adjustToContentHeight ? s.content__adjustHeight : s.content__container;
-    const minDist = isRNGH2() ? undefined : ACTIVATED;
 
     return (
       <PanGestureHandler
@@ -790,9 +784,6 @@ const ModalizeBase = (
         simultaneousHandlers={[nativeViewChildrenRef, tapGestureModalizeRef]}
         shouldCancelWhenOutside={false}
         onGestureEvent={handleGestureEvent}
-        minDist={minDist}
-        activeOffsetY={ACTIVATED}
-        activeOffsetX={ACTIVATED}
         onHandlerStateChange={handleChildren}
       >
         <Animated.View style={[style, childrenStyle]}>

@@ -315,8 +315,6 @@ export interface IProps<ListItem = any> {
   onLayout?(nativeEvent: { layout: LayoutRectangle }): void;
 
   gestureEventListener?(nativeEvent: any): void;
-  childrenGestureEventListener?(nativeEvent: any): void;
-  childrenGestureEventListener?(nativeEvent: any): void;
 }
 
 export interface IHandles {
