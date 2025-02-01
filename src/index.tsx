@@ -477,7 +477,7 @@ const ModalizeBase = (
     if (nativeEvent.oldState === State.ACTIVE) {
       const toValue = translationY - beginScrollYValue;
       let destSnapPoint = 0;
-
+      const toTop = alwaysOpen && modalPosition === 'top' && velocityY <= 0;
       if (snapPoint || alwaysOpen) {
         const endOffsetY = lastSnap + toValue + dragToss * velocityY;
 
@@ -526,7 +526,7 @@ const ModalizeBase = (
       if (willCloseModalize) {
         return;
       }
-
+      if (toTop) destSnapPoint = 0;
       setLastSnap(destSnapPoint);
       translateY.extractOffset();
       translateY.setValue(toValue);
